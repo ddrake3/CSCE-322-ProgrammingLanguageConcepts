@@ -1,9 +1,9 @@
 grammar csce322a01part01;
 
 // rules
-extremePegSolitaire 					: ((moves | error) (game | error) (endOfFile | error) EOF) | ((game | error) (moves | error) (endOfFile | error) EOF);
+extremePegSolitaire 					: moves game endOfFile EOF | game moves endOfFile EOF;
 
-game 									: gameSectionTitle sectionBeginning gameBeginning ((gameSymbolHyphen|gameSymbolX|gameSymbolNumb|gameEnding)+ rowEnding+)+  sectionEnding;
+game 									: gameSectionTitle sectionBeginning gameBeginning ((gameSymbolHyphen|gameSymbolX|gameSymbolNumb)+ (rowEnding|gameEnding)+)+  sectionEnding;
 moves 									: movesSectionTitle sectionBeginning movesBeginning (moveSymbol|moveSymbolComma)+ movesEnding sectionEnding;
 
 sectionBeginning						: SECTIONBEGINNING{System.out.println("Begin the Section");};
