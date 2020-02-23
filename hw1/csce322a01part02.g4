@@ -15,10 +15,11 @@ grammar csce322a01part02;
 			}
 			
 // rules
-extremePegSolitaire 					: (moves game semantics endOfFile | error) | (game moves semantics endOfFile | error);
+extremePegSolitaire 					: (moves game semantics endOfFile) | (game moves semantics endOfFile);
 
-game 									: (gameSectionTitle sectionBeginning gameBeginning ((gameSymbolHyphen|gameSymbolX|gameSymbolNumb)+ (rowEnding|gameEnding)+)+  sectionEnding) | error;
-moves 									: (movesSectionTitle sectionBeginning movesBeginning ((moveSymbolUp|moveSymbolDown|moveSymbolLeft|moveSymbolRight)|moveSymbolComma)+ movesEnding sectionEnding) | error;
+game 									: (gameSectionTitle sectionBeginning gameBeginning ((gameSymbolHyphen|gameSymbolX|gameSymbolNumb)+ (rowEnding|gameEnding)+)+  sectionEnding);
+moves 									: (movesSectionTitle sectionBeginning movesBeginning ((moveSymbolUp|moveSymbolDown|moveSymbolLeft|moveSymbolRight)|moveSymbolComma)+ movesEnding sectionEnding);
+
 sectionBeginning						: SECTIONBEGINNING | error;
 sectionEnding							: SECTIONENDING | error;
 gameSectionTitle						: GAMESECTIONTITLE | error;
