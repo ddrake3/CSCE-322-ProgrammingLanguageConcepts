@@ -1,33 +1,33 @@
 grammar csce322a01part01;
 
 // rules
-extremePegSolitaire 					: moves game endOfFile | game moves endOfFile ;
+extremePegSolitaire 					: (moves game endOfFile | error) | (game moves endOfFile | error);
 
-game 									: gameSectionTitle sectionBeginning gameBeginning ((gameSymbolHyphen|gameSymbolX|gameSymbolNumb)+ (rowEnding|gameEnding)+)+  sectionEnding;
-moves 									: movesSectionTitle sectionBeginning movesBeginning (moveSymbol|moveSymbolComma)+ movesEnding sectionEnding;
+game 									: (gameSectionTitle sectionBeginning gameBeginning ((gameSymbolHyphen|gameSymbolX|gameSymbolNumb)+ (rowEnding|gameEnding)+)+  sectionEnding) | error;
+moves 									: (movesSectionTitle sectionBeginning movesBeginning (moveSymbol|moveSymbolComma)+ movesEnding sectionEnding) | error;
 
-sectionBeginning						: SECTIONBEGINNING{System.out.println("Begin the Section");};
-sectionEnding							: SECTIONENDING{System.out.println("End the Section");};
-gameSectionTitle						: GAMESECTIONTITLE{System.out.println("game Section");};
-movesSectionTitle						: MOVESSECTIONTITLE{System.out.println("moves Section");};
+sectionBeginning						: SECTIONBEGINNING{System.out.println("Begin the Section");} | error;
+sectionEnding							: SECTIONENDING{System.out.println("End the Section");} | error;
+gameSectionTitle						: GAMESECTIONTITLE{System.out.println("game Section");} | error;
+movesSectionTitle						: MOVESSECTIONTITLE{System.out.println("moves Section");} | error;
 											
-moveSymbol								: MOVESYMBOL{System.out.println("Move: " + $MOVESYMBOL.text);};
-moveSymbolComma							: MOVESYMBOLCOMMA{};
-gameSymbolHyphen						: GAMESYMBOLHYPHEN{System.out.println("Space: Empty");};
-gameSymbolX								: GAMESYMBOLX{System.out.println("Space: " + $GAMESYMBOLX.text);};
-gameSymbolNumb							: GAMESYMBOLNUMB{System.out.println("Space: " + $GAMESYMBOLNUMB.text);};
+moveSymbol								: MOVESYMBOL{System.out.println("Move: " + $MOVESYMBOL.text);} | error;
+moveSymbolComma							: MOVESYMBOLCOMMA{} | error;
+gameSymbolHyphen						: GAMESYMBOLHYPHEN{System.out.println("Space: Empty");} | error;
+gameSymbolX								: GAMESYMBOLX{System.out.println("Space: " + $GAMESYMBOLX.text);} | error;
+gameSymbolNumb							: GAMESYMBOLNUMB{System.out.println("Space: " + $GAMESYMBOLNUMB.text);} | error;
 
-rowEnding								: ROWENDING{System.out.println("End the Row");};
+rowEnding								: ROWENDING{System.out.println("End the Row");} | error;
 
-gameBeginning							: GAMEBEGINNING{System.out.println("Start the Game");};
-gameEnding								: GAMEENDING{System.out.println("End the Game");};
+gameBeginning							: GAMEBEGINNING{System.out.println("Start the Game");} | error;
+gameEnding								: GAMEENDING{System.out.println("End the Game");} | error;
 
-movesBeginning							: MOVESBEGINNING{System.out.println("Begin the List");};
-movesEnding								: MOVESENDING{System.out.println("End the List");};
+movesBeginning							: MOVESBEGINNING{System.out.println("Begin the List");} | error;
+movesEnding								: MOVESENDING{System.out.println("End the List");} | error;
 
-endOfFile								: EOF{System.out.println("End the File");};
+endOfFile								: EOF{System.out.println("End the File");} | error;
  
-error									: ANYTHING{System.out.println("SYNTAX ERROR IN LINE " + $ANYTHING.line);};
+error									: ANYTHING{System.out.println("SYNTAX ERROR IN LINE " + $ANYTHING.line);System.exit(1);};
 
 // tokens
 SECTIONBEGINNING 						: '>>';
