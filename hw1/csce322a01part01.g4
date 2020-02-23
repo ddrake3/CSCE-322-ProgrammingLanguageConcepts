@@ -1,7 +1,7 @@
 grammar csce322a01part01;
 
 // rules
-extremePegSolitaire 					: moves game endOfFile EOF | game moves endOfFile EOF;
+extremePegSolitaire 					: moves game endOfFile | game moves endOfFile ;
 
 game 									: gameSectionTitle sectionBeginning gameBeginning ((gameSymbolHyphen|gameSymbolX|gameSymbolNumb)+ (rowEnding|gameEnding)+)+  sectionEnding;
 moves 									: movesSectionTitle sectionBeginning movesBeginning (moveSymbol|moveSymbolComma)+ movesEnding sectionEnding;
@@ -27,7 +27,7 @@ movesEnding								: MOVESENDING{System.out.println("End the List");};
 
 endOfFile								: EOF{System.out.println("End the File");};
  
-error									: ERROR{System.out.println("SYNTAX ERROR IN LINE " + $ERROR.line);};
+error									: ANYTHING{System.out.println("SYNTAX ERROR IN LINE " + $ANYTHING.line);};
 
 // tokens
 SECTIONBEGINNING 						: '>>';
@@ -51,4 +51,4 @@ MOVESENDING 							: '$';
 
 WS 										: [ \t\r\n]+ -> skip;
 
-ERROR									: .;
+ANYTHING 								: .;
