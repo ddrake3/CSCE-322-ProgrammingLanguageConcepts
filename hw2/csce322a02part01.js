@@ -39,7 +39,6 @@ function onePlayerOneMove(game) {
 
 				}
 			}
-			return game;
 			break;
 		case 'u':
 			if (playerPositionI > 1) {
@@ -50,10 +49,9 @@ function onePlayerOneMove(game) {
 					game[playerPositionI - 2][playerPositionJ] = '1';
 				}
 			}
-			return game;
 			break;
 		case 'r':
-			if (playerPositionJ < game.length - 1) {
+			if (playerPositionJ < game[0].length - 2) {
 				if (game[playerPositionI][playerPositionJ + 1] != '-'
 						&& game[playerPositionI][playerPositionJ + 2] != '-') {
 					game[playerPositionI][playerPositionJ] = 'x';
@@ -62,10 +60,9 @@ function onePlayerOneMove(game) {
 
 				}
 			}
-			return game;
 			break;
 		case 'd':
-			if (playerPositionI < game[0].length - 1) {
+			if (playerPositionI < game.length - 2) {
 				if (game[playerPositionI + 1][playerPositionJ] != '-'
 						&& game[playerPositionI + 2][playerPositionJ] != '-') {
 					game[playerPositionI][playerPositionJ] = 'x';
@@ -73,7 +70,6 @@ function onePlayerOneMove(game) {
 					game[playerPositionI + 2][playerPositionJ] = '1';
 				}
 			}
-			return game;
 			break;
 		}
 

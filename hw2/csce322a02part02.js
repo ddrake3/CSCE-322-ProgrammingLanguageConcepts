@@ -1,14 +1,80 @@
 module.exports = {
-    onePlayerManyMoves: onePlayerManyMoves
+	onePlayerManyMoves : onePlayerManyMoves
 }
 
-var helpers = require( './helpers' );
+var helpers = require('./helpers');
 
-function onePlayerManyMoves( game ){
-    
-    function whatever( moves ){
-	return game;
-    }
+function onePlayerManyMoves(game) {
 
-    return whatever;
+	function whatever(moves) {
+
+		var playerPositionI = 0;
+		var playerPositionJ = 0;
+
+		// iterate through the moves array
+		for (var i = 0; i < moves.length; i++) {
+			// get the players current position
+			for (var i = 0; i < game.length; i++) {
+				for (var j = 0; j < game[0].length; j++) {
+					if (game[i][j] != '-' && game[i][j] != 'x') {
+						playerPositionI = i;
+						playerPositionJ = j;
+					}
+				}
+			}
+			switch (moves[i]) {
+			case 'l':
+				if (playerPositionJ > 1) {
+					if (game[playerPositionI][playerPositionJ - 1] != '-'
+							&& game[playerPositionI][playerPositionJ - 2] != '-') {
+						game[playerPositionI][playerPositionJ] = 'x';
+						game[playerPositionI][playerPositionJ - 1] = '-';
+						game[playerPositionI][playerPositionJ - 2] = '1';
+
+					}
+				}
+				break;
+			case 'u':
+				if (playerPositionI > 1) {
+					if (game[playerPositionI - 1][playerPositionJ] != '-'
+							&& game[playerPositionI - 2][playerPositionJ] != '-') {
+						game[playerPositionI][playerPositionJ] = 'x';
+						game[playerPositionI - 1][playerPositionJ] = '-';
+						game[playerPositionI - 2][playerPositionJ] = '1';
+					}
+				}
+				break;
+			case 'r':
+				if (playerPositionJ < game[0].length - 2) {
+					if (game[playerPositionI][playerPositionJ + 1] != '-'
+							&& game[playerPositionI][playerPositionJ + 2] != '-') {
+						game[playerPositionI][playerPositionJ] = 'x';
+						game[playerPositionI][playerPositionJ + 1] = '-';
+						game[playerPositionI][playerPositionJ + 2] = '1';
+
+					}
+				}
+				break;
+			case 'd':
+				if (playerPositionI < game.length - 2) {
+					if (game[playerPositionI + 1][playerPositionJ] != '-'
+							&& game[playerPositionI + 2][playerPositionJ] != '-') {
+						game[playerPositionI][playerPositionJ] = 'x';
+						game[playerPositionI + 1][playerPositionJ] = '-';
+						game[playerPositionI + 2][playerPositionJ] = '1';
+					}
+				}
+				break;
+
+			}
+
+			for (var r = 0; r < game.length; r++) {
+				console.error(game[r]);
+			}
+			console.error("break");
+		}
+		return game;
+	}
+
+	return whatever;
 }
