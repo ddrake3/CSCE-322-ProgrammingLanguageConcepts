@@ -12,7 +12,7 @@ function onePlayerManyMoves(game) {
 		var playerPositionJ = 0;
 
 		// iterate through the moves array
-		for (var i = 0; i < moves.length; i++) {
+		for (var x = 0; x < moves.length; x++) {
 			// get the players current position
 			for (var i = 0; i < game.length; i++) {
 				for (var j = 0; j < game[0].length; j++) {
@@ -22,7 +22,7 @@ function onePlayerManyMoves(game) {
 					}
 				}
 			}
-			switch (moves[i]) {
+			switch (moves[x]) {
 			case 'l':
 				if (playerPositionJ > 1) {
 					if (game[playerPositionI][playerPositionJ - 1] != '-'
@@ -67,11 +67,6 @@ function onePlayerManyMoves(game) {
 				break;
 
 			}
-
-			for (var r = 0; r < game.length; r++) {
-				console.error(game[r]);
-			}
-			console.error("break");
 		}
 		return game;
 	}
