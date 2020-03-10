@@ -37,6 +37,7 @@ function manyPlayersManyMoves(game) {
 					if (playerPositionJ > 1) {
 						if (game[playerPositionI][playerPositionJ - 1] != '-'
 								&& game[playerPositionI][playerPositionJ - 2] != '-'
+								&& isNaN(parseInt(game[playerPositionI][playerPositionJ - 1]))
 								&& isNaN(parseInt(game[playerPositionI][playerPositionJ - 2]))) {
 							game[playerPositionI][playerPositionJ] = 'x';
 							game[playerPositionI][playerPositionJ - 1] = '-';
@@ -50,6 +51,7 @@ function manyPlayersManyMoves(game) {
 					if (playerPositionI > 1) {
 						if (game[playerPositionI - 1][playerPositionJ] != '-'
 								&& game[playerPositionI - 2][playerPositionJ] != '-'
+								&& isNaN(parseInt(game[playerPositionI - 1][playerPositionJ]))
 								&& isNaN(parseInt(game[playerPositionI - 2][playerPositionJ]))) {
 							game[playerPositionI][playerPositionJ] = 'x';
 							game[playerPositionI - 1][playerPositionJ] = '-';
@@ -62,6 +64,7 @@ function manyPlayersManyMoves(game) {
 					if (playerPositionJ < game[0].length - 2) {
 						if (game[playerPositionI][playerPositionJ + 1] != '-'
 								&& game[playerPositionI][playerPositionJ + 2] != '-'
+								&& isNaN(parseInt(game[playerPositionI][playerPositionJ + 1]))
 								&& isNaN(parseInt(game[playerPositionI][playerPositionJ + 2]))) {
 							game[playerPositionI][playerPositionJ] = 'x';
 							game[playerPositionI][playerPositionJ + 1] = '-';
@@ -75,6 +78,7 @@ function manyPlayersManyMoves(game) {
 					if (playerPositionI < game.length - 2) {
 						if (game[playerPositionI + 1][playerPositionJ] != '-'
 								&& game[playerPositionI + 2][playerPositionJ] != '-'
+								&& isNaN(parseInt(game[playerPositionI + 1][playerPositionJ]))
 								&& isNaN(parseInt(game[playerPositionI + 2][playerPositionJ]))) {
 							game[playerPositionI][playerPositionJ] = 'x';
 							game[playerPositionI + 1][playerPositionJ] = '-';
